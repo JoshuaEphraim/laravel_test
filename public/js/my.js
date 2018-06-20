@@ -13,9 +13,13 @@ $(document).ready(function() {
                 dataType: "json",
                 data: {url: url},
                 success: function (resp) {
-                    $('.errors ul').html('');
-                        $('.thead-inverse').append('<tr data-id="' + resp.id + '"><th>' + resp.id + '</th><th><a href="' + resp.path + '">' + resp.path + '</a></th><th>' + resp.mime_type + '</th><th>' + resp.url + '</th><th><button class="delete" data-id="' + resp.id + '">Delete</button></th></tr>');
 
+                    $('.errors ul').html('');
+                    if(!resp.error) {
+                        $('.thead-inverse').append('<tr data-id="' + resp.id + '"><th>' + resp.id + '</th><th><a href="' + resp.path + '">' + resp.path + '</a></th><th>' + resp.mime_type + '</th><th>' + resp.url + '</th><th><button class="delete" data-id="' + resp.id + '">Delete</button></th></tr>');
+                    }else{
+                            $('.errors ul').append('<li>'+resp.error+'</li>');
+                    }
                 },
                 error: function (resp) {
                     $('.errors ul').html('');
