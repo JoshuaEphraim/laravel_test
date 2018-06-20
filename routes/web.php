@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FileController@show');
+Route::post('/url','FileController@getFile');
+Route::post('/delete','FileController@deleteFile');
+Route::get('/storage/app/public/{name}','FileController@pushFile');
